@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Weather.css";
 import { toHaveDescription } from "@testing-library/jest-dom/dist/matchers";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     console.log(response.data);
@@ -64,8 +64,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "5ao55858tc2a40f458b3fd5863e6d791";
-    let city = "Boston";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
